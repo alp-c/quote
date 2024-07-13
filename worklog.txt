@@ -1,0 +1,11 @@
+10.07.2024 4h 30m
+11.07.2024 3h 30m
+12.07.2024 1h 30m
+13.07.2024 6h
+
+pip install websockets
+pip install Flask
+
+
+
+curl -X GET http://localhost:5021/test
