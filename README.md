@@ -27,3 +27,5 @@ A brief description
 ```bash
 python src/app.py
 ```
+
+Tested on Python 3.11.4 and Python 3.9.17
