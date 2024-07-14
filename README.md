@@ -1,6 +1,6 @@
 ## Description
 A web service offering real-time digital currency trade quotes using WebSocket order book data from Binance.
-You can learn average price of 
+Provides average trade price for a buy/sell request with given amount
 
 ## Architecture
 
@@ -32,7 +32,7 @@ You can learn average price of
     pip install -r requirements.txt
     ```
 
-## Usage
+# Usage
 
 Current configuration (can be changed at src/app.py)
 ```python
@@ -47,15 +47,6 @@ Start service
 ```bash
 python src/app.py
 ```
-at another terminal window send request to service (tested and works on windows)
-```bash
-curl -X POST http://localhost:5021/quote -H "Content-Type: application/json" -d "{\"action\": \"buy\", \"base_currency\": \"ETH\", \"quote_currency\": \"USDT\", \"amount\": \"1.5\"}"
-```
-Received response
-```json
-{"currency":"USDT","price":"3185.6","total":"4778.4"}
-```
-
 ### Endpoints: POST /quote
 
 #### Request
@@ -65,11 +56,21 @@ Received response
 - **quote_currency** (String): The currency to quote the price in
 - **amount** (String): The amount of the base currency to be traded
 
+at another terminal window send request to service (tested and works on windows)
+```bash
+curl -X POST http://localhost:5021/quote -H "Content-Type: application/json" -d "{\"action\": \"buy\", \"base_currency\": \"ETH\", \"quote_currency\": \"USDT\", \"amount\": \"1.5\"}"
+```
+
 #### Response
 
 - **total** (String): Total quantity of quote currency needed or received
 - **price** (String): The per-unit cost of the base currency
 - **currency** (String): The quote currency
+
+Received response
+```json
+{"currency":"USDT","price":"3185.6","total":"4778.4"}
+```
 
 
 ## Executing Tests
