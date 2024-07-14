@@ -38,9 +38,5 @@ def create_controller(quote_service:QuoteService) -> Flask:
 
         except Exception as e:
             return jsonify("Internal Server Error: " + e), 500
-        
-    @app.get('/test')
-    def test():
-        return jsonify("hello"), 200
 
     return app
