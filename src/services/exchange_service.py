@@ -1,5 +1,7 @@
 import asyncio, websockets
 from abc import ABC, abstractmethod
+import json
+from json import JSONDecodeError
 from websockets import WebSocketClientProtocol
 from asyncio import Task
 from typing import List
@@ -76,15 +78,15 @@ class ExchangeWebSocketClient(ABC):
         while not self.stop_event.is_set():
             try:
                 message = await self.websocket.recv()
-                json = json.loads(message)
-                self.on_message(json)
+                json_message = json.loads(message)
+                self.on_message(json_message)
             except websockets.ConnectionClosedError:
                 print("Connection closed, reconnecting...")
                 await self._connect()
             except websockets.WebSocketException as e:
                 print(f"WebSocket error: {e}. Reconnecting...")
                 await self._connect()
-            except json.JSONDecodeError as e:
+            except JSONDecodeError as e:
                 print(f"JSON decode error: {e}")
             except Exception as e:
                 print(f"Unexpected error: {e}")
