@@ -32,12 +32,22 @@ A brief description
 python src/app.py
 ```
 
-## Executing Tests
+Current configuration (can be changed at src/app.py)
+```python
+# Quote requests will be served at this port
+port = 5021  
 
-    ```bash
-    cd quote
-    pytest
-    ```
+# This symbols' partial order book data will be listened from binance spot web-socket
+# and can be used to make quote request
+symbols = ["BTCUSDT", "ETHUSDT", "LTCUSDT", "BNBUSDT", "USDTTRY"]
+```
+
+
+## Executing Tests
+```bash
+cd quote # set working directory to current repository folder
+pytest
+```
 
 
 Tested on Python 3.11.4 and Python 3.9.17
