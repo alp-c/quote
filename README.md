@@ -28,4 +28,12 @@ A brief description
 python src/app.py
 ```
 
+## Executing Tests
+
+    ```bash
+    cd quote
+    pytest
+    ```
+
+
 Tested on Python 3.11.4 and Python 3.9.17
