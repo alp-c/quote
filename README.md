@@ -52,10 +52,11 @@ Received response
 
 
 ## Executing Tests
+at current repository folder just run
 ```bash
-cd quote # set working directory to current repository folder
 pytest
 ```
-
+unit test results
+![Architecture](doc/architecture.png)
 
 Tested on Python 3.11.4 and Python 3.9.17
