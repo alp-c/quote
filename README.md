@@ -57,6 +57,6 @@ at current repository folder just run
 pytest
 ```
 unit test results
-![Architecture](doc/architecture.png)
+![Architecture](doc/tests.png)
 
 Tested on Python 3.11.4 and Python 3.9.17
