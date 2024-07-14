@@ -131,5 +131,4 @@ class QuoteService(OrderBookObserver):
                     return QuoteResponse(total_fill_volume, avg_fill_price, request.quote_currency)
         
         # error on no match
-        return f"Order book is not liquid enough to fill your request. " + \
-            f"First {levels} levels covers only {(total_quantity/request.amount)*100}% of your requested amount."
+        return f"Order book is not liquid enough to fill your request. "
