@@ -1,7 +1,6 @@
-# quote
-
 ## Description
-A brief description
+A web service offering real-time digital currency trade quotes using WebSocket order book data from Binance.
+You can learn average price of 
 
 ## Architecture
 
@@ -56,6 +55,21 @@ Received response
 ```json
 {"currency":"USDT","price":"3185.6","total":"4778.4"}
 ```
+
+### Endpoints: POST /quote
+
+#### Request
+
+- **action** (String): Either "buy" or "sell"
+- **base_currency** (String): The currency to be bought or sold
+- **quote_currency** (String): The currency to quote the price in
+- **amount** (String): The amount of the base currency to be traded
+
+#### Response
+
+- **total** (String): Total quantity of quote currency needed or received
+- **price** (String): The per-unit cost of the base currency
+- **currency** (String): The quote currency
 
 
 ## Executing Tests

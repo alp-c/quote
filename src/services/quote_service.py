@@ -34,7 +34,8 @@ class QuoteService(OrderBookObserver):
 
         
     def quote(self, request:QuoteRequest) -> Union[QuoteResponse, str]:
-        """Calculates best price for given quote request"""
+        """Calculates weighted avg price that fills given quote request. 
+        Returns calculation result QuoteResponse or error message str"""
 
         symbol = request.get_symbol()
         symbol_reversed = request.get_symbol(reversed=True)
@@ -79,7 +80,7 @@ class QuoteService(OrderBookObserver):
             total_quantity += offers[i].quantity
             total_volume += offers[i].quantity * offers[i].price
 
-            # when use reversed symbol fill calcuations based on volume (quantity*price)
+            # when using reversed symbol fill calcuations based on volume (quantity*price)
             if uses_reverse_symbol:
                 # check at current level reached sufficient amount of volume (quantity*price) to fill request
                 is_fill_completed = total_volume >= request.amount
@@ -98,7 +99,7 @@ class QuoteService(OrderBookObserver):
                     # current price level completely added
                     filled_orders.append(offers[i])
 
-            # when use standard symbol fill calculations based on quantity
+            # when using standard symbol fill calculations based on quantity
             else:
                 # check at current level reached sufficient amount of quantity to fill request
                 is_fill_completed = total_quantity >= request.amount

@@ -5,7 +5,9 @@ import math
 class QuoteParser:
     @staticmethod
     def validate_request(json:dict) -> str:
-        """Validates parameters in json"""
+        """Validates parameters in JSON. 
+        Returns an error message string if the request is invalid. 
+        Returns an empty string if the request is valid"""
         
         # check parameters exist and filled
         for param in ["action", "base_currency", "quote_currency", "amount"]:
