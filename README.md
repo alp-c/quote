@@ -3,6 +3,10 @@
 ## Description
 A brief description
 
+## Architecture
+
+![Architecture](doc/architecture.png)
+
 ## Installation
 
 1. Clone the repository:
