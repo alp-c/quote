@@ -18,7 +18,14 @@ A brief description
 2. (Optional) Create and activate a virtual environment:
     ```bash
     python -m venv env
-    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    ```
+    on windows
+    ```
+    env\Scripts\activate
+    ```
+    on linux
+    ```
+    source env/bin/activate
     ```
 
 3. Install the required packages:
