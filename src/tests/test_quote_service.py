@@ -63,17 +63,31 @@ class TestQuoteService:
         assert response.price == 1900.0
         assert response.currency == "ETH"
 
-    def test_request_fill_at_level_2(self):
+    def test_request_fill_at_level_2_buy_eth(self):
         request = QuoteRequest(action="buy", base_currency="ETH", quote_currency="USDT", amount=20)
         response = self.quote_service.quote(request)
         assert isinstance(response, QuoteResponse)
         assert response.currency == "USDT"
 
-        # matched ask offer 2 to fill requested amount completely
-        # in real life it should be weighted avg price
-        # but for simlicity only uses last price level's price that fills request
-        assert response.price == 2100.0 
-        assert response.total == 42000.0
+        # received 10 eth at level1 at price 2000
+        # received next 10 eth at level2 at price 2100
+        # so avg receive price is 2050 and total volume 41000
+        assert response.price == 2050.0 
+        assert response.total == 41000.0
+
+
+    def test_request_fill_at_level_2_buy_usd(self):
+        request = QuoteRequest(action="buy", base_currency="USDT", quote_currency="ETH", amount=24200)
+        response = self.quote_service.quote(request)
+        assert isinstance(response, QuoteResponse)
+        assert response.currency == "ETH"
+
+        # request is buying 24.200$ worth eth:
+        # at level 1 there is 20.000$ worth 10 eth (unit price 2.000)
+        # at level 2 there is next 4.200$ worth 2 eth (unit price 2.100)
+        # so avg receive price is ~2016 and total received eth is 12
+        assert int(response.price) == int(2016.666)
+        assert response.total == 12
 
     def test_unfilled_request(self):
         """Tests buying with 7M $ while top level order book not sufficient to calculate cost"""

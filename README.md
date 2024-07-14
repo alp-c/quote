@@ -37,11 +37,11 @@ port = 5021
 # and can be used to make quote request
 symbols = ["BTCUSDT", "ETHUSDT", "LTCUSDT", "BNBUSDT", "USDTTRY"]
 ```
-Starting service
+Start service
 ```bash
 python src/app.py
 ```
-Sending example request to service
+at another terminal window send request to service
 ```bash
 curl -X POST http://localhost:5021/quote -H "Content-Type: application/json" -d "{\"action\": \"buy\", \"base_currency\": \"ETH\", \"quote_currency\": \"USDT\", \"amount\": \"1.5\"}"
 ```
