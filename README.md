@@ -28,10 +28,6 @@ A brief description
 
 ## Usage
 
-```bash
-python src/app.py
-```
-
 Current configuration (can be changed at src/app.py)
 ```python
 # Quote requests will be served at this port
@@ -40,6 +36,18 @@ port = 5021
 # This symbols' partial order book data will be listened from binance spot web-socket
 # and can be used to make quote request
 symbols = ["BTCUSDT", "ETHUSDT", "LTCUSDT", "BNBUSDT", "USDTTRY"]
+```
+Starting service
+```bash
+python src/app.py
+```
+Sending example request to service
+```bash
+curl -X POST http://localhost:5021/quote -H "Content-Type: application/json" -d "{\"action\": \"buy\", \"base_currency\": \"ETH\", \"quote_currency\": \"USDT\", \"amount\": \"1.5\"}"
+```
+Received response
+```json
+{"currency":"USDT","price":"3185.6","total":"4778.4"}
 ```
 
 
