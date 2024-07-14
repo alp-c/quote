@@ -146,18 +146,3 @@ class BinanceSpotWebSocketClient(ExchangeWebSocketClient):
         interval = "100ms" # order book receive period
         stream_names = [f"{symbol.lower()}@depth{depth}@{interval}" for symbol in self.symbols]
         return f"wss://stream.binance.com:9443/stream?streams={'/'.join(stream_names)}"
-
-    def on_message(self, message):
-        # Custom handling of the message
-        stream = message['stream']
-        data = message['data']
-        print(f"Custom handling of message from {stream}: {data}")
-
-
-"""
-# Usage example
-symbols = ["btcusdt", "ethusdt"]
-client = BinanceSpotWebSocketClient()
-client.set_symbols(symbols)
-asyncio.run(client.start())
-"""

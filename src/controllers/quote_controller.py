@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
+from werkzeug.exceptions import BadRequest
+
 from services.quote_service import QuoteService
+from models.quote import QuoteRequest, QuoteResponse
 from utils.quote_parser import QuoteParser
 
 def create_controller(quote_service:QuoteService) -> Flask:
@@ -22,14 +25,19 @@ def create_controller(quote_service:QuoteService) -> Flask:
                 return jsonify(error_message), 400
             
             quote_request = QuoteParser.to_request(request_json)
- 
             quote_response = service.quote(quote_request)
-            
-            response_json = QuoteParser.to_response_json(quote_response)
-            
-            return jsonify(response_json), 200
+
+            if isinstance(quote_response, QuoteResponse):
+                response_json = QuoteParser.to_response_json(quote_response)
+                return jsonify(response_json), 200
+            else:
+                return jsonify(quote_response), 400
+        
+        except BadRequest as e:
+            return jsonify(e.description), 400
+
         except Exception as e:
-            return jsonify("Internal Server Error"), 500
+            return jsonify("Internal Server Error: " + e), 500
         
     @app.get('/test')
     def test():

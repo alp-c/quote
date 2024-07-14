@@ -76,7 +76,7 @@ class TestQuoteService:
         assert response.total == 42000.0
 
     def test_unfilled_request(self):
-        """Tests buying with 7M $ while top level order book not sufficient to calculate"""
+        """Tests buying with 7M $ while top level order book not sufficient to calculate cost"""
         request = QuoteRequest(action="buy", base_currency="USDT", quote_currency="ETH", amount=7000000)
         response = self.quote_service.quote(request)
         assert isinstance(response, str)
