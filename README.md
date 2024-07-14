@@ -41,7 +41,7 @@ Start service
 ```bash
 python src/app.py
 ```
-at another terminal window send request to service
+at another terminal window send request to service (tested and works on windows)
 ```bash
 curl -X POST http://localhost:5021/quote -H "Content-Type: application/json" -d "{\"action\": \"buy\", \"base_currency\": \"ETH\", \"quote_currency\": \"USDT\", \"amount\": \"1.5\"}"
 ```
